@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html class="dark" lang="vi">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>{% block title %}Mắt Thần Đại Nam - Hệ Thống Nhận Diện Bạo Lực{% endblock %}</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#2c7677",
+                        "background-light": "#f9fafa",
+                        "background-dark": "#17191c",
+                        "surface-dark": "#26292D",
+                        "text-light": "#E0E0E0",
+                        "text-muted": "#9E9E9E",
+                        "orange": "#FF9800",
+                        "danger": "#EF4444"
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+    
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .sidebar-group:hover .sidebar-group-hover\:block {
+            display: block;
+        }
+        .sidebar-group:hover .sidebar-group-hover\:w-56 {
+            width: 14rem;
+        }
+        .sidebar-group:hover .sidebar-group-hover\:opacity-100 {
+            opacity: 1;
+        }
+        .sidebar-group:hover .sidebar-group-hover\:pointer-events-auto {
+            pointer-events: auto;
+        }
+    </style>
+    
+    {% block extra_css %}{% endblock %}
+</head>
+<body class="font-display bg-background-light dark:bg-background-dark">
+<div class="relative flex h-auto min-h-screen w-full dark group/design-root overflow-x-hidden">
+    <div class="layout-container flex h-full grow flex-row">
+        <!-- Sidebar -->
+        <nav class="group sidebar-group relative z-20 flex flex-col items-center bg-background-light dark:bg-surface-dark py-4 px-2 shadow-lg transition-all duration-300 w-20 sidebar-group-hover:w-56">
+            <a class="flex items-center gap-4 text-text-light mb-8 w-full justify-center" href="{{ url_for('index') }}">
+                <div class="size-10 flex-shrink-0">
+                    <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Logo" class="w-full h-full object-contain"/>
+                </div>
+                <span class="text-lg font-bold text-gray-800 dark:text-text-light opacity-0 pointer-events-none transition-opacity duration-200 sidebar-group-hover:opacity-100 sidebar-group-hover:pointer-events-auto whitespace-nowrap">Mắt Thần Đại Nam</span>
+            </a>
+            
+            <div class="flex flex-col gap-2 flex-1 w-full">
+                <a class="flex items-center gap-4 h-12 px-4 rounded-lg {% if request.endpoint == 'index' %}bg-primary/10 text-primary{% else %}text-gray-600 dark:text-text-muted hover:bg-gray-200 dark:hover:bg-gray-700/50 hover:text-gray-900 dark:hover:text-text-light{% endif %} transition-colors w-full" href="{{ url_for('index') }}">
+                    <span class="material-symbols-outlined text-inherit text-2xl">home</span>
+                    <span class="font-semibold text-sm whitespace-nowrap opacity-0 pointer-events-none transition-opacity duration-200 sidebar-group-hover:opacity-100 sidebar-group-hover:pointer-events-auto">Trang Chủ</span>
+                </a>
+                
+                <a class="flex items-center gap-4 h-12 px-4 rounded-lg {% if request.endpoint == 'camera' %}bg-primary/10 text-primary{% else %}text-gray-600 dark:text-text-muted hover:bg-gray-200 dark:hover:bg-gray-700/50 hover:text-gray-900 dark:hover:text-text-light{% endif %} transition-colors w-full" href="{{ url_for('camera') }}">
+                    <span class="material-symbols-outlined text-inherit text-2xl">videocam</span>
+                    <span class="font-semibold text-sm whitespace-nowrap opacity-0 pointer-events-none transition-opacity duration-200 sidebar-group-hover:opacity-100 sidebar-group-hover:pointer-events-auto">Camera Trực Tiếp</span>
+                </a>
+                
+                <a class="flex items-center gap-4 h-12 px-4 rounded-lg {% if request.endpoint == 'history' %}bg-primary/10 text-primary{% else %}text-gray-600 dark:text-text-muted hover:bg-gray-200 dark:hover:bg-gray-700/50 hover:text-gray-900 dark:hover:text-text-light{% endif %} transition-colors w-full" href="{{ url_for('history') }}">
+                    <span class="material-symbols-outlined text-inherit text-2xl">history</span>
+                    <span class="font-semibold text-sm whitespace-nowrap opacity-0 pointer-events-none transition-opacity duration-200 sidebar-group-hover:opacity-100 sidebar-group-hover:pointer-events-auto">Lịch Sử Sự Kiện</span>
+                </a>
+                
+                <a class="flex items-center gap-4 h-12 px-4 rounded-lg text-gray-600 dark:text-text-muted hover:bg-gray-200 dark:hover:bg-gray-700/50 hover:text-gray-900 dark:hover:text-text-light transition-colors w-full" href="#">
+                    <span class="material-symbols-outlined text-inherit text-2xl">folder</span>
+                    <span class="font-semibold text-sm whitespace-nowrap opacity-0 pointer-events-none transition-opacity duration-200 sidebar-group-hover:opacity-100 sidebar-group-hover:pointer-events-auto">Kho Video</span>
+                </a>
+            </div>
+            
+            <div class="flex flex-col gap-2 w-full">
+                <a class="flex items-center gap-4 h-12 px-4 rounded-lg {% if request.endpoint == 'config' %}bg-primary/10 text-primary{% else %}text-gray-600 dark:text-text-muted hover:bg-gray-200 dark:hover:bg-gray-700/50 hover:text-gray-900 dark:hover:text-text-light{% endif %} transition-colors w-full" href="{{ url_for('config') }}">
+                    <span class="material-symbols-outlined text-inherit text-2xl">settings</span>
+                    <span class="font-semibold text-sm whitespace-nowrap opacity-0 pointer-events-none transition-opacity duration-200 sidebar-group-hover:opacity-100 sidebar-group-hover:pointer-events-auto">Cấu Hình</span>
+                </a>
+                
+                <button class="flex items-center gap-4 h-12 px-4 rounded-lg text-gray-600 dark:text-text-muted w-full">
+                    <img alt="User avatar" class="size-8 rounded-full object-cover" src="https://ui-avatars.com/api/?name=Admin&background=2c7677&color=fff"/>
+                    <div class="flex-col items-start text-left opacity-0 pointer-events-none transition-opacity duration-200 sidebar-group-hover:opacity-100 sidebar-group-hover:pointer-events-auto">
+                        <p class="font-semibold text-sm text-gray-800 dark:text-text-light whitespace-nowrap">Admin</p>
+                        <p class="text-xs text-gray-500 dark:text-text-muted">Quản trị viên</p>
+                    </div>
+                </button>
+            </div>
+        </nav>
+        
+        <!-- Main Content -->
+        <div class="flex-1 px-4 sm:px-8 md:px-12 py-5 overflow-hidden">
+            <div class="layout-content-container flex flex-col w-full h-full max-w-[1440px] flex-1">
+                {% block content %}{% endblock %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+{% block extra_js %}{% endblock %}
+</body>
+</html>

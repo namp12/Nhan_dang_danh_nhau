@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html class="dark" lang="vi">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Phân Tích Video - Mắt Thần Đại Nam</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script>
+    tailwind.config = {
+        darkMode: "class",
+        theme: {
+            extend: {
+                colors: {
+                    "primary": "#2c7677",
+                    "background-dark": "#17191c",
+                    "surface-dark": "#26292D",
+                    "text-light": "#E0E0E0",
+                    "text-muted": "#9E9E9E",
+                    "danger": "#EF4444"
+                },
+                fontFamily: { "display": ["Manrope", "sans-serif"] }
+            }
+        }
+    }
+</script>
+<style>
+    .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+    .sidebar-group:hover .sidebar-group-hover\:w-56 { width: 14rem; }
+    .sidebar-group:hover .sidebar-group-hover\:opacity-100 { opacity: 1; }
+    .sidebar-group:hover .sidebar-group-hover\:pointer-events-auto { pointer-events: auto; }
+    #dropzone.drag-over { @apply border-primary bg-primary/10; }
+</style>
+</head>
+<body class="font-display bg-background-dark">
+<div class="relative flex min-h-screen w-full dark overflow-x-hidden">
+<div class="layout-container flex h-full grow flex-row">
+<!-- Sidebar -->
+<nav class="group sidebar-group relative z-20 flex flex-col items-center bg-surface-dark py-4 px-2 shadow-lg transition-all duration-300 w-20 sidebar-group-hover:w-56">
+<a class="flex items-center gap-4 text-text-light mb-8 w-full justify-center" href="/">
+<div class="size-10 text-primary flex-shrink-0">
+<img src="{{ url_for('static',filename='images/logo.png') }}" alt="Logo" class="w-full h-full object-contain"/>
+</div>
+<span class="text-lg font-bold dark:text-text-light opacity-0 pointer-events-none transition-opacity duration-200 sidebar-group-hover:opacity-100 sidebar-group-hover:pointer-events-auto whitespace-nowrap">Mắt Thần Đại Nam</span>
+</a>
+<div class="flex flex-col gap-2 flex-1 w-full">
+<a class="flex items-center gap-4 h-12 px-4 rounded-lg text-text-muted hover:bg-gray-700/50 hover:text-text-light transition-colors w-full" href="/">
+<span class="material-symbols-outlined text-2xl">home</span>
+<span class="font-semibold text-sm whitespace-nowrap opacity-0 pointer-events-none transition-opacity duration-200 sidebar-group-hover:opacity-100 sidebar-group-hover:pointer-events-auto">Trang Chủ</span>
+</a>
+<a class="flex items-center gap-4 h-12 px-4 rounded-lg text-text-muted hover:bg-gray-700/50 hover:text-text-light transition-colors w-full" href="/camera">
+<span class="material-symbols-outlined text-2xl">videocam</span>
+<span class="font-semibold text-sm whitespace-nowrap opacity-0 pointer-events-none transition-opacity duration-200 sidebar-group-hover:opacity-100 sidebar-group-hover:pointer-events-auto">Quản Lý Camera</span>
+</a>
+<a class="flex items-center gap-4 h-12 px-4 rounded-lg bg-primary/10 text-primary w-full" href="/analysis">
+<span class="material-symbols-outlined text-2xl">video_library</span>
+<span class="font-semibold text-sm whitespace-nowrap opacity-0 pointer-events-none transition-opacity duration-200 sidebar-group-hover:opacity-100 sidebar-group-hover:pointer-events-auto">Phân Tích Video</span>
+</a>
+<a class="flex items-center gap-4 h-12 px-4 rounded-lg text-text-muted hover:bg-gray-700/50 hover:text-text-light transition-colors w-full" href="/history">
+<span class="material-symbols-outlined text-2xl">history</span>
+<span class="font-semibold text-sm whitespace-nowrap opacity-0 pointer-events-none transition-opacity duration-200 sidebar-group-hover:opacity-100 sidebar-group-hover:pointer-events-auto">Lịch Sử</span>
+</a>
+</div>
+<div class="flex flex-col gap-2 w-full">
+<a class="flex items-center gap-4 h-12 px-4 rounded-lg text-text-muted hover:bg-gray-700/50 hover:text-text-light transition-colors w-full" href="/config">
+<span class="material-symbols-outlined text-2xl">settings</span>
+<span class="font-semibold text-sm whitespace-nowrap opacity-0 pointer-events-none transition-opacity duration-200 sidebar-group-hover:opacity-100 sidebar-group-hover:pointer-events-auto">Cấu Hình</span>
+</a>
+</div>
+</nav>
+
+<!-- Main Content -->
+<div class="flex-1 px-6 py-5">
+<div class="max-w-6xl mx-auto">
+<!-- Header -->
+<div class="mb-8">
+<h1 class="text-4xl font-black text-white mb-2">Phân Tích Video</h1>
+<p class="text-text-muted">Upload video để phát hiện hành vi bạo lực tự động</p>
+</div>
+
+<!-- Upload Section -->
+<div id="uploadSection" class="mb-8">
+<div id="dropzone" class="border-2 border-dashed border-gray-700 rounded-xl p-12 text-center bg-surface-dark/50 hover:border-primary hover:bg-surface-dark transition-all cursor-pointer">
+<input type="file" id="fileInput" accept="video/*" class="hidden" onchange="handleFileSelect(event)"/>
+<span class="material-symbols-outlined text-6xl text-gray-600 mb-4 block">cloud_upload</span>
+<h3 class="text-white text-xl font-semibold mb-2">Kéo thả video vào đây</h3>
+<p class="text-text-muted mb-4">hoặc click để chọn file</p>
+<button onclick="document.getElementById('fileInput').click()" class="bg-primary hover:bg-primary/90 text-white px-6 py-3 rounded-lg font-semibold transition-colors">
+Chọn Video
+</button>
+<p class="text-text-muted text-sm mt-4">Hỗ trợ: MP4, AVI, MOV (tối đa 500MB)</p>
+</div>
+</div>
+
+<!-- Processing Section -->
+<div id="processingSection" class="hidden mb-8">
+<div class="bg-surface-dark rounded-xl p-6">
+<div class="flex items-center justify-between mb-4">
+<div class="flex items-center gap-3">
+<div class="w-12 h-12 bg-primary/20 rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-2xl">video_file</span>
+</div>
+<div>
+<h3 class="text-white font-semibold" id="fileName">video_sample.mp4</h3>
+<p class="text-text-muted text-sm" id="fileSize">125 MB</p>
+</div>
+</div>
+<button onclick="cancelProcessing()" class="text-text-muted hover:text-white transition-colors">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<div class="space-y-2">
+<div class="flex justify-between text-sm mb-1">
+<span class="text-text-muted">Đang phân tích...</span>
+<span class="text-primary font-medium" id="progress">45%</span>
+</div>
+<div class="w-full bg-gray-700 rounded-full h-2">
+<div id="progressBar" class="bg-primary h-2 rounded-full transition-all duration-300" style="width: 45%"></div>
+</div>
+<p class="text-text-muted text-sm mt-2" id="statusText">Đang quét khung hình 1250/2800...</p>
+</div>
+</div>
+</div>
+
+<!-- Results Section -->
+<div id="resultsSection" class="hidden">
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
+<!-- Stats Cards -->
+<div class="bg-danger/10 border border-danger/30 rounded-xl p-6">
+<div class="flex items-center justify-between mb-2">
+<span class="material-symbols-outlined text-danger text-3xl">warning</span>
+<span class="text-danger text-xs font-semibold bg-danger/20 px-2 py-1 rounded-full">NGUY HIỂM</span>
+</div>
+<h3 class="text-3xl font-black text-danger mb-1">3</h3>
+<p class="text-text-muted text-sm">Sự kiện bạo lực phát hiện</p>
+</div>
+<div class="bg-primary/10 border border-primary/30 rounded-xl p-6">
+<span class="material-symbols-outlined text-primary text-3xl mb-2 block">groups</span>
+<h3 class="text-3xl font-black text-primary mb-1">7</h3>
+<p class="text-text-muted text-sm">Người xuất hiện</p>
+</div>
+<div class="bg-surface-dark rounded-xl p-6">
+<span class="material-symbols-outlined text-text-light text-3xl mb-2 block">schedule</span>
+<h3 class="text-3xl font-black text-white mb-1">12:35</h3>
+<p class="text-text-muted text-sm">Độ dài video</p>
+</div>
+</div>
+
+<!-- Video Player & Timeline -->
+<div class="bg-surface-dark rounded-xl overflow-hidden mb-6">
+<div class="relative aspect-video bg-black">
+<img src="https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=800" alt="Video frame" class="w-full h-full object-cover"/>
+<!-- Detection Overlay -->
+<div class="absolute top-[30%] left-[60%] w-40 h-24 border-2 border-dashed border-danger rounded-lg bg-danger/10 p-2">
+<div class="flex items-center gap-1 bg-danger/80 px-2 py-1 rounded text-xs text-white w-fit">
+<span class="material-symbols-outlined text-[12px]">groups</span>
+<span>Đánh Nhau</span>
+</div>
+<p class="text-xs text-white mt-1">92% confident</p>
+</div>
+<div class="absolute bottom-4 left-4 right-4">
+<div class="flex items-center gap-3 mb-2">
+<button class="text-white hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-2xl">play_arrow</span>
+</button>
+<span class="text-white text-sm font-mono">02:15 / 12:35</span>
+</div>
+<div class="w-full h-2 bg-gray-700 rounded-full relative cursor-pointer">
+<div class="absolute h-full bg-primary rounded-l-full" style="width: 18%"></div>
+<!-- Event Markers -->
+<div class="absolute h-4 w-1 bg-danger rounded-full top-1/2 -translate-y-1/2" style="left: 18%" title="Violence: 02:15"></div>
+<div class="absolute h-4 w-1 bg-danger rounded-full top-1/2 -translate-y-1/2" style="left: 45%" title="Violence: 05:40"></div>
+<div class="absolute h-4 w-1 bg-danger rounded-full top-1/2 -translate-y-1/2" style="left: 72%" title="Violence: 09:10"></div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- Detection Events -->
+<div class="bg-surface-dark rounded-xl p-6">
+<div class="flex items-center justify-between mb-6">
+<h2 class="text-xl font-bold text-white">Các Sự Kiện Phát Hiện</h2>
+<button class="flex items-center gap-2 bg-primary/20 hover:bg-primary/30 text-primary px-4 py-2 rounded-lg text-sm font-medium transition-colors">
+<span class="material-symbols-outlined text-base">download</span>
+Xuất Báo Cáo
+</button>
+</div>
+<div class="space-y-3">
+<!-- Event 1 -->
+<div class="bg-danger/10 border border-danger/30 rounded-lg p-4 cursor-pointer hover:bg-danger/20 transition-colors">
+<div class="flex items-start gap-4">
+<div class="w-32 h-20 bg-black rounded overflow-hidden flex-shrink-0">
+<img src="https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=200" alt="Frame" class="w-full h-full object-cover"/>
+</div>
+<div class="flex-1">
+<div class="flex items-center gap-2 mb-1">
+<span class="material-symbols-outlined text-danger text-sm">warning</span>
+<h3 class="text-white font-semibold">Đánh Nhau</h3>
+<span class="text-xs text-danger bg-danger/20 px-2 py-0.5 rounded-full font-medium">NGHIÊM TRỌNG</span>
+</div>
+<p class="text-text-muted text-sm mb-2">Phát hiện tại 02:15 - Độ chính xác: 92%</p>
+<div class="flex items-center gap-4 text-xs text-text-muted">
+<span>📍 Vị trí: Center frame</span>
+<span>👥 3 người tham gia</span>
+<span>⏱️ Thời lượng: 8s</span>
+</div>
+</div>
+<button class="text-primary hover:text-primary/80 transition-colors">
+<span class="material-symbols-outlined">play_circle</span>
+</button>
+</div>
+</div>
+<!-- Event 2 -->
+<div class="bg-danger/10 border border-danger/30 rounded-lg p-4 cursor-pointer hover:bg-danger/20 transition-colors">
+<div class="flex items-start gap-4">
+<div class="w-32 h-20 bg-black rounded overflow-hidden flex-shrink-0">
+<img src="https://images.unsplash.com/photo-1556742111-a301076d9d18?w=200" alt="Frame" class="w-full h-full object-cover"/>
+</div>
+<div class="flex-1">
+<div class="flex items-center gap-2 mb-1">
+<span class="material-symbols-outlined text-danger text-sm">warning</span>
+<h3 class="text-white font-semibold">Xô Đẩy</h3>
+<span class="text-xs text-yellow-500 bg-yellow-500/20 px-2 py-0.5 rounded-full font-medium">CẢNH BÁO</span>
+</div>
+<p class="text-text-muted text-sm mb-2">Phát hiện tại 05:40 - Độ chính xác: 85%</p>
+<div class="flex items-center gap-4 text-xs text-text-muted">
+<span>📍 Vị trí: Right side</span>
+<span>👥 2 người tham gia</span>
+<span>⏱️ Thời lượng: 5s</span>
+</div>
+</div>
+<button class="text-primary hover:text-primary/80 transition-colors">
+<span class="material-symbols-outlined">play_circle</span>
+</button>
+</div>
+</div>
+<!-- Event 3 -->
+<div class="bg-danger/10 border border-danger/30 rounded-lg p-4 cursor-pointer hover:bg-danger/20 transition-colors">
+<div class="flex items-start gap-4">
+<div class="w-32 h-20 bg-black rounded overflow-hidden flex-shrink-0">
+<img src="https://images.unsplash.com/photo-1574634066836-bb81e70e5c47?w=200" alt="Frame" class="w-full h-full object-cover"/>
+</div>
+<div class="flex-1">
+<div class="flex items-center gap-2 mb-1">
+<span class="material-symbols-outlined text-danger text-sm">warning</span>
+<h3 class="text-white font-semibold">Hành Vi Bất Thường</h3>
+<span class="text-xs text-danger bg-danger/20 px-2 py-0.5 rounded-full font-medium">NGHIÊM TRỌNG</span>
+</div>
+<p class="text-text-muted text-sm mb-2">Phát hiện tại 09:10 - Độ chính xác: 88%</p>
+<div class="flex items-center gap-4 text-xs text-text-muted">
+<span>📍 Vị trí: Background</span>
+<span>👥 4 người tham gia</span>
+<span>⏱️ Thời lượng: 12s</span>
+</div>
+</div>
+<button class="text-primary hover:text-primary/80 transition-colors">
+<span class="material-symbols-outlined">play_circle</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- Action Buttons -->
+<div class="flex gap-3 mt-6">
+<button onclick="resetAnalysis()" class="flex-1 bg-surface-dark hover:bg-gray-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors">
+Phân Tích Video Khác
+</button>
+<button class="flex items-center justify-center gap-2 bg-primary hover:bg-primary/90 text-white px-6 py-3 rounded-lg font-semibold transition-colors">
+<span class="material-symbols-outlined">save</span>
+Lưu Kết Quả
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<script>
+const dropzone = document.getElementById('dropzone');
+const fileInput = document.getElementById('fileInput');
+
+// Drag and drop
+dropzone.addEventListener('dragover', (e) => {
+    e.preventDefault();
+    dropzone.classList.add('drag-over');
+});
+dropzone.addEventListener('dragleave', () => {
+    dropzone.classList.remove('drag-over');
+});
+dropzone.addEventListener('drop', (e) => {
+    e.preventDefault();
+    dropzone.classList.remove('drag-over');
+    const files = e.dataTransfer.files;
+    if (files.length > 0) {
+        handleFile(files[0]);
+    }
+});
+dropzone.addEventListener('click', (e) => {
+    if (e.target === dropzone || e.target.closest('#dropzone')) {
+        fileInput.click();
+    }
+});
+
+function handleFileSelect(event) {
+    const file = event.target.files[0];
+    if (file) {
+        handleFile(file);
+    }
+}
+
+function handleFile(file) {
+    document.getElementById('fileName').textContent = file.name;
+    document.getElementById('fileSize').textContent = (file.size / (1024 * 1024)).toFixed(2) + ' MB';
+    
+    // Show processing
+    document.getElementById('uploadSection').classList.add('hidden');
+    document.getElementById('processingSection').classList.remove('hidden');
+    
+    // Simulate processing
+    let progress = 0;
+    const interval = setInterval(() => {
+        progress += 5;
+        document.getElementById('progress').textContent = progress + '%';
+        document.getElementById('progressBar').style.width = progress + '%';
+        document.getElementById('statusText').textContent = `Đang quét khung hình ${Math.floor(progress * 28)}/${2800}...`;
+        
+        if (progress >= 100) {
+            clearInterval(interval);
+            setTimeout(() => {
+                document.getElementById('processingSection').classList.add('hidden');
+                document.getElementById('resultsSection').classList.remove('hidden');
+            }, 500);
+        }
+    }, 200);
+}
+
+function cancelProcessing() {
+    document.getElementById('processingSection').classList.add('hidden');
+    document.getElementById('uploadSection').classList.remove('hidden');
+}
+
+function resetAnalysis() {
+    document.getElementById('resultsSection').classList.add('hidden');
+    document.getElementById('uploadSection').classList.remove('hidden');
+    fileInput.value = '';
+}
+</script>
+</body>
+</html>

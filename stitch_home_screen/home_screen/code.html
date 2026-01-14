@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Complete Home Screen</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#2c7677",
+                        "background-light": "#f9fafa",
+                        "background-dark": "#17191c",
+                        "surface-dark": "#26292D",
+                        "text-light": "#E0E0E0",
+                        "text-muted": "#9E9E9E",
+                        "orange": "#FF9800",
+                        "danger": "#EF4444"
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .sidebar-group:hover .sidebar-group-hover\:block {
+            display: block;
+        }
+        .sidebar-group:hover .sidebar-group-hover\:w-56 {
+            width: 14rem;
+        }
+        .sidebar-group:hover .sidebar-group-hover\:opacity-100 {
+            opacity: 1;
+        }
+        .sidebar-group:hover .sidebar-group-hover\:pointer-events-auto {
+            pointer-events: auto;
+        }
+    </style>
+</head>
+<body class="font-display bg-background-light dark:bg-background-dark">
+<div class="relative flex h-auto min-h-screen w-full dark group/design-root overflow-x-hidden">
+<div class="layout-container flex h-full grow flex-row">
+<nav class="group sidebar-group relative z-20 flex flex-col items-center bg-background-light dark:bg-surface-dark py-4 px-2 shadow-lg transition-all duration-300 w-20 sidebar-group-hover:w-56">
+<a class="flex items-center gap-4 text-text-light mb-8 w-full justify-center" href="#">
+<div class="size-10 text-primary flex-shrink-0">
+<svg fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path clip-rule="evenodd" d="M24 4H6V17.3333V30.6667H24V44H42V30.6667V17.3333H24V4Z" fill="currentColor" fill-rule="evenodd"></path>
+</svg>
+</div>
+<span class="text-lg font-bold text-gray-800 dark:text-text-light opacity-0 pointer-events-none transition-opacity duration-200 sidebar-group-hover:opacity-100 sidebar-group-hover:pointer-events-auto">VigilEye</span>
+</a>
+<div class="flex flex-col gap-2 flex-1 w-full">
+<a class="flex items-center gap-4 h-12 px-4 rounded-lg bg-primary/10 text-primary w-full" href="#">
+<span class="material-symbols-outlined text-inherit text-2xl">home</span>
+<span class="font-semibold text-sm whitespace-nowrap opacity-0 pointer-events-none transition-opacity duration-200 sidebar-group-hover:opacity-100 sidebar-group-hover:pointer-events-auto">Home</span>
+</a>
+<a class="flex items-center gap-4 h-12 px-4 rounded-lg text-gray-600 dark:text-text-muted hover:bg-gray-200 dark:hover:bg-gray-700/50 hover:text-gray-900 dark:hover:text-text-light transition-colors w-full" href="#">
+<span class="material-symbols-outlined text-inherit text-2xl">videocam</span>
+<span class="font-semibold text-sm whitespace-nowrap opacity-0 pointer-events-none transition-opacity duration-200 sidebar-group-hover:opacity-100 sidebar-group-hover:pointer-events-auto">Live Feeds</span>
+</a>
+<a class="flex items-center gap-4 h-12 px-4 rounded-lg text-gray-600 dark:text-text-muted hover:bg-gray-200 dark:hover:bg-gray-700/50 hover:text-gray-900 dark:hover:text-text-light transition-colors w-full" href="#">
+<span class="material-symbols-outlined text-inherit text-2xl">monitoring</span>
+<span class="font-semibold text-sm whitespace-nowrap opacity-0 pointer-events-none transition-opacity duration-200 sidebar-group-hover:opacity-100 sidebar-group-hover:pointer-events-auto">Analytics</span>
+</a>
+<a class="flex items-center gap-4 h-12 px-4 rounded-lg text-gray-600 dark:text-text-muted hover:bg-gray-200 dark:hover:bg-gray-700/50 hover:text-gray-900 dark:hover:text-text-light transition-colors w-full" href="#">
+<span class="material-symbols-outlined text-inherit text-2xl">history</span>
+<span class="font-semibold text-sm whitespace-nowrap opacity-0 pointer-events-none transition-opacity duration-200 sidebar-group-hover:opacity-100 sidebar-group-hover:pointer-events-auto">Event History</span>
+</a>
+<a class="flex items-center gap-4 h-12 px-4 rounded-lg text-gray-600 dark:text-text-muted hover:bg-gray-200 dark:hover:bg-gray-700/50 hover:text-gray-900 dark:hover:text-text-light transition-colors w-full" href="#">
+<span class="material-symbols-outlined text-inherit text-2xl">folder</span>
+<span class="font-semibold text-sm whitespace-nowrap opacity-0 pointer-events-none transition-opacity duration-200 sidebar-group-hover:opacity-100 sidebar-group-hover:pointer-events-auto">Video Archive</span>
+</a>
+</div>
+<div class="flex flex-col gap-2 w-full">
+<a class="flex items-center gap-4 h-12 px-4 rounded-lg text-gray-600 dark:text-text-muted hover:bg-gray-200 dark:hover:bg-gray-700/50 hover:text-gray-900 dark:hover:text-text-light transition-colors w-full" href="#">
+<span class="material-symbols-outlined text-inherit text-2xl">settings</span>
+<span class="font-semibold text-sm whitespace-nowrap opacity-0 pointer-events-none transition-opacity duration-200 sidebar-group-hover:opacity-100 sidebar-group-hover:pointer-events-auto">Settings</span>
+</a>
+<button class="flex items-center gap-4 h-12 px-4 rounded-lg text-gray-600 dark:text-text-muted w-full">
+<img alt="User avatar" class="size-8 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBZhlSFstMdMQ_yTK1Ua38lpAAewWalKe8dvNnEy8UN9-RivYcLmTk0eoIivqFdPtiWGvBke2nsM7ehdYJIejbxbVPLKCiEX64FI5V6vhOS2J5xxB4kwMEvDwLy5Le4McAM4RUGuWRpdXtj-07k67Omi0qDdthIb9jg7tX5yx9XWL2Bjr3cyIYje9StduZ0Q_NrKRYkn9J6qi5T4SGYb9Hqn2ZuuTrjFsqmtYXG4Vl_B3OgabUd4g8NnsgsmgSOj_7UDXiy8hIN3ag"/>
+<div class="flex-col items-start text-left opacity-0 pointer-events-none transition-opacity duration-200 sidebar-group-hover:opacity-100 sidebar-group-hover:pointer-events-auto">
+<p class="font-semibold text-sm text-gray-800 dark:text-text-light whitespace-nowrap">Alex Wolfe</p>
+<p class="text-xs text-gray-500 dark:text-text-muted">Admin</p>
+</div>
+</button>
+</div>
+</nav>
+<div class="flex-1 px-4 sm:px-8 md:px-12 py-5 overflow-hidden">
+<div class="layout-content-container flex flex-col w-full h-full max-w-[1440px] flex-1">
+<main class="flex flex-col lg:flex-row gap-6 flex-1">
+<div class="flex flex-col gap-6 flex-1 lg:w-2/3">
+<div class="flex flex-col rounded-xl overflow-hidden bg-background-light dark:bg-surface-dark shadow-sm">
+<div class="relative flex items-center justify-center bg-cover bg-center aspect-video group">
+<div class="absolute inset-0 bg-black/20" data-alt="Live surveillance camera feed of a building's main entrance" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDKFg0J8S6K4kJVec883Fejp5czv9yICcyJiJvpkYTIvIHfFJ4edKo0zKftshyIt2vJPPHuF7EvBH9xcwEHQQuG_FlOZu-QIfKIDR8B39q9UeeqA0NpXvGrJCQyhPNe45jkG4oxAeBrGhFhuImSX7_xgxTu3BoB9TdOE1p2LRlI2GbS84G7xHNivSqzrnZUISkUoV6MKgmdD1lzbpKs22rT-NPDju3gIxdalVZPbxlvvauiqlfdkgBTs3LlPtnQvP4bGtFDQEVSLB0"); background-size: cover; background-position: center;'></div>
+<div class="absolute top-[30%] left-[65%] w-48 h-28 border-2 border-dashed border-danger rounded-lg bg-danger/10 backdrop-blur-[2px] p-2 text-white">
+<div class="flex items-center gap-1.5 bg-danger/80 px-1.5 py-0.5 rounded-md text-xs w-fit">
+<span class="material-symbols-outlined text-[14px]">groups</span>
+<span>Altercation</span>
+</div>
+<p class="text-xs mt-1 font-medium">Confidence: 92%</p>
+</div>
+<div class="absolute top-[50%] left-[25%] w-24 h-40 border-2 border-solid border-orange rounded-lg bg-orange/10 backdrop-blur-[2px] p-2 text-white">
+<div class="flex items-center gap-1.5 bg-orange/80 px-1.5 py-0.5 rounded-md text-xs w-fit">
+<span class="material-symbols-outlined text-[14px]">person</span>
+<span>Person</span>
+</div>
+<p class="text-xs mt-1 font-medium">ID: P-4821</p>
+</div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent pointer-events-none"></div>
+<div class="absolute top-3 left-3 flex items-center gap-2 bg-red-600 text-white px-3 py-1 rounded-full text-xs font-medium z-10">
+<span class="relative flex h-2 w-2">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span>
+</span>
+<span>LIVE</span>
+</div>
+<p class="absolute top-3 right-3 text-white text-sm font-medium bg-black/30 px-3 py-1 rounded-full z-10">School Camera - Main Courtyard</p>
+<div class="absolute bottom-4 left-4 right-4 flex justify-between items-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10">
+<div class="flex items-center gap-2">
+<button class="flex items-center justify-center rounded-full size-10 bg-black/50 text-white backdrop-blur-sm hover:bg-black/70 transition-colors">
+<span class="material-symbols-outlined text-inherit text-2xl">pause</span>
+</button>
+<button class="flex items-center justify-center rounded-full size-10 bg-black/50 text-white backdrop-blur-sm hover:bg-black/70 transition-colors">
+<span class="material-symbols-outlined text-inherit text-2xl">volume_up</span>
+</button>
+</div>
+<div class="flex items-center gap-2">
+<button class="flex items-center justify-center rounded-full size-10 bg-primary/80 text-white backdrop-blur-sm hover:bg-primary/100 transition-colors">
+<span class="material-symbols-outlined text-inherit text-2xl">grid_4x4</span>
+</button>
+<button class="flex items-center justify-center rounded-full size-10 bg-black/50 text-white backdrop-blur-sm hover:bg-black/70 transition-colors">
+<span class="material-symbols-outlined text-inherit text-2xl">photo_camera</span>
+</button>
+<button class="flex items-center justify-center rounded-full size-10 bg-black/50 text-white backdrop-blur-sm hover:bg-black/70 transition-colors">
+<span class="material-symbols-outlined text-inherit text-2xl">fullscreen</span>
+</button>
+</div>
+</div>
+</div>
+<div class="p-4 bg-background-light dark:bg-surface-dark/80">
+<div class="w-full h-12 flex items-center gap-3">
+<span class="text-sm font-medium text-gray-500 dark:text-text-muted">14:20:00</span>
+<div class="flex-1 h-2 bg-gray-200 dark:bg-gray-700 rounded-full relative group cursor-pointer">
+<div class="absolute h-full bg-primary rounded-l-full" style="width: 75%;"></div>
+<div class="absolute h-full w-1.5 bg-danger rounded-full" style="left: 60%;" title="Unusual Activity: 14:23:45"></div>
+<div class="absolute h-full w-1 bg-orange rounded-full" style="left: 45%;" title="Person Detected: 14:22:15"></div>
+<div class="absolute h-full w-1.5 bg-danger rounded-full" style="left: 30%;" title="Unusual Activity: 14:21:05"></div>
+<div class="absolute top-1/2 -translate-y-1/2 h-4 w-4 bg-white dark:bg-gray-200 border-2 border-primary rounded-full" style="left: 75%;">
+<div class="absolute -top-8 left-1/2 -translate-x-1/2 bg-gray-800 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">14:23:45</div>
+</div>
+</div>
+<span class="text-sm font-medium text-gray-500 dark:text-text-muted">14:25:00</span>
+</div>
+</div>
+</div>
+<div class="bg-background-light dark:bg-surface-dark p-6 rounded-xl shadow-sm">
+<div class="flex flex-wrap gap-4 items-center justify-between">
+<h3 class="text-gray-700 dark:text-text-light font-medium text-lg">Feed Sources</h3>
+<button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center gap-2 overflow-hidden rounded-lg h-10 px-5 bg-primary text-white text-sm font-bold leading-normal tracking-[0.015em] hover:bg-primary/90 transition-colors w-full sm:w-auto">
+<span class="material-symbols-outlined text-xl">upload_file</span>
+<span class="truncate">Import Videos</span>
+</button>
+</div>
+<div class="mt-4 grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+<div class="relative group aspect-[16/10] rounded-lg overflow-hidden border border-gray-200 dark:border-gray-700">
+<img alt="Video thumbnail for Parking Lot footage" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC_qn07pDj0JXY7HXiEEs21D4t81QeijBNV3vQzG_CalurKw9oaUZIssGaufH5_cjsOhh8G3phWgAtoji2bJJTwhz_cHq4vw2OcD-bjpUsjptYGYQN_DLqdEeUFP71hV8d-vEFjOC1jENJsfes_EZzC959lny4mR2I6eeYFmih4LmztuWPioImTUf263rFfci38SpRIqumRXXpI96hqsZpMS3zO6s9PMZcdl23ZH2xVr-P0ybyy8B6u5JKWXDmUT5QsFGRiVKhYGgA"/>
+<div class="absolute inset-0 bg-black/40"></div>
+<div class="absolute top-2 left-2 right-2 flex justify-between items-center">
+<p class="text-white text-xs font-semibold truncate">Parking_Lot_B_01.mp4</p>
+<div class="size-6 bg-green-500/80 rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-sm">done</span>
+</div>
+</div>
+<div class="absolute bottom-2 left-2 right-2 text-white text-xs">
+<p>1.2 GB / 15:30</p>
+<div class="w-full bg-gray-500/50 rounded-full h-1 mt-1">
+<div class="bg-green-500 h-1 rounded-full" style="width: 100%;"></div>
+</div>
+</div>
+</div>
+<div class="relative group aspect-[16/10] rounded-lg overflow-hidden border border-gray-200 dark:border-gray-700">
+<img alt="Video thumbnail for West Entrance footage" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBXAmBVGbgleYkEL0aHSdjQZH0xRQTQ7iQ4dIBVo2kVa00mE_7NDSU9lV9IGwU-sbswSPzBMsGvagmFBDW3fmxmy5dcSX2a1i0gYfLeK5UO9xKaU407u9rKmNHB4Jh_sSjw3vmop3sH0jIsA7M0D6PsTA89LFnTeZ7nLXOrajlH678XsyBntbBOXRHH4WEpDu03gvCj__0TkQWbyXsWENEZq-sR4WI5TI6333jcJTTWGAeKQZZs-Fs-d0yl-LZn_piVwD05IXI3he8"/>
+<div class="absolute inset-0 bg-black/40"></div>
+<div class="absolute top-2 left-2 right-2 flex justify-between items-center">
+<p class="text-white text-xs font-semibold truncate">West_Entrance_High.mp4</p>
+<button class="size-6 bg-gray-500/80 rounded-full flex items-center justify-center hover:bg-danger/80 transition-colors">
+<span class="material-symbols-outlined text-white text-sm">close</span>
+</button>
+</div>
+<div class="absolute bottom-2 left-2 right-2 text-white text-xs">
+<p>780 MB / 08:12</p>
+<div class="w-full bg-gray-500/50 rounded-full h-1 mt-1">
+<div class="bg-primary h-1 rounded-full" style="width: 65%;"></div>
+</div>
+</div>
+</div>
+<div class="flex items-center justify-center aspect-[16/10] border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-lg text-gray-500 dark:text-text-muted hover:border-primary dark:hover:text-primary transition-colors cursor-pointer">
+<div class="text-center">
+<span class="material-symbols-outlined text-4xl">add_photo_alternate</span>
+<p class="text-sm font-medium mt-1">Add more files</p>
+</div>
+</div>
+</div>
+<div class="mt-6 p-4 rounded-lg bg-gray-50 dark:bg-gray-900/40 border border-gray-200 dark:border-gray-700/60 flex items-center justify-between gap-4">
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary text-3xl mt-1">videocam</span>
+<div>
+<h4 class="font-bold text-gray-800 dark:text-text-light">Local Camera Feed</h4>
+<p class="text-sm text-gray-600 dark:text-text-muted">Use your device's camera for live analysis.</p>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<div class="flex items-center gap-2 text-green-600 dark:text-green-400">
+<span class="material-symbols-outlined text-base">privacy_tip</span>
+<span class="text-xs font-semibold">Active &amp; Secure</span>
+</div>
+<button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center gap-2 overflow-hidden rounded-lg h-9 px-4 bg-primary text-white text-sm font-bold leading-normal tracking-[0.015em] hover:bg-primary/90 transition-colors">
+<span class="material-symbols-outlined text-lg">flip_camera_android</span>
+<span>Activate Camera</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<aside class="flex flex-col lg:w-1/3 min-w-[320px]">
+<div class="bg-background-light dark:bg-surface-dark p-6 rounded-xl shadow-sm flex-1 flex flex-col">
+<div class="flex justify-between items-center mb-4">
+<h3 class="text-gray-900 dark:text-text-light text-lg font-bold">Analysis Results</h3>
+<div class="flex items-center gap-1">
+<button class="flex items-center justify-center size-8 rounded-md text-gray-500 dark:text-text-muted hover:bg-gray-200 dark:hover:bg-gray-700/50 transition-colors">
+<span class="material-symbols-outlined text-xl">filter_list</span>
+</button>
+<button class="flex items-center justify-center size-8 rounded-md text-gray-500 dark:text-text-muted hover:bg-gray-200 dark:hover:bg-gray-700/50 transition-colors">
+<span class="material-symbols-outlined text-xl">more_vert</span>
+</button>
+</div>
+</div>
+<div class="flex-1 overflow-y-auto space-y-3 pr-2">
+<div class="p-4 rounded-lg bg-danger/10 dark:bg-danger/20 cursor-pointer border-2 border-danger/80">
+<div class="flex justify-between items-start gap-2">
+<p class="text-sm font-semibold text-danger">Unusual Activity Detected</p>
+<p class="text-xs text-danger/80 dark:text-red-300 whitespace-nowrap font-medium">14:23:45</p>
+</div>
+<p class="text-sm text-gray-600 dark:text-text-muted mt-1">Altercation detected in main courtyard. Confidence: 92%</p>
+<div class="mt-3 pt-3 border-t border-danger/20 flex flex-col gap-3">
+<div class="h-28 bg-gray-200 dark:bg-gray-800 rounded-md flex items-center justify-center">
+<img alt="Video frame showing altercation" class="w-full h-full object-cover rounded-md" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA3-jS42ShqJGRkDvruuGn73S3cCrGkgd_-LWCgBja1NWiUn1QytGpst7KqaUb6GrU6mFfQHl5r9sdpMTKdOyElqJWQtvoTvhlIhu4jh4hHYhirpG4PbNKh60hUcqQYKycu8YY0pOmhQ__ky2BBj0CNT6ClKN9YOWiq9x0oC5bNLr7068lHFOhJLQYhcfKkc8GCnxfHkfJD8V0KVB0LPL8tll0U87-RmBqpDZI5jESJcQ24sMlnTf5gBc8e3wcKN8gjv6JbszZsJsA"/>
+</div>
+<div class="flex items-center justify-end gap-3">
+<button class="flex items-center gap-1.5 text-xs text-gray-600 dark:text-text-muted hover:text-primary dark:hover:text-primary transition-colors font-medium">
+<span class="material-symbols-outlined text-base">fullscreen</span>
+                                                    View Clip
+                                                </button>
+<button class="flex items-center gap-1.5 text-xs text-gray-600 dark:text-text-muted hover:text-primary dark:hover:text-primary transition-colors font-medium">
+<span class="material-symbols-outlined text-base">share</span>
+                                                    Share
+                                                </button>
+</div>
+</div>
+</div>
+<div class="p-3 rounded-lg bg-gray-100 dark:bg-gray-800/50 cursor-pointer border border-transparent hover:border-primary/50">
+<div class="flex justify-between items-start gap-2">
+<p class="text-sm font-semibold text-gray-800 dark:text-text-light">Person Detected</p>
+<p class="text-xs text-gray-500 dark:text-text-muted whitespace-nowrap">14:22:15</p>
+</div>
+<p class="text-sm text-gray-600 dark:text-text-muted mt-0.5">Individual near main entrance.</p>
+</div>
+<div class="p-3 rounded-lg bg-gray-100 dark:bg-gray-800/50 cursor-pointer border border-transparent hover:border-primary/50">
+<div class="flex justify-between items-start gap-2">
+<p class="text-sm font-semibold text-gray-800 dark:text-text-light">Vehicle Entry</p>
+<p class="text-xs text-gray-500 dark:text-text-muted whitespace-nowrap">14:21:58</p>
+</div>
+<p class="text-sm text-gray-600 dark:text-text-muted mt-0.5">Blue sedan entered perimeter.</p>
+</div>
+<div class="p-3 rounded-lg bg-gray-100 dark:bg-gray-800/50 cursor-pointer border border-transparent hover:border-primary/50">
+<div class="flex justify-between items-start gap-2">
+<p class="text-sm font-semibold text-gray-800 dark:text-text-light">Person Detected</p>
+<p class="text-xs text-gray-500 dark:text-text-muted whitespace-nowrap">14:19:03</p>
+</div>
+<p class="text-sm text-gray-600 dark:text-text-muted mt-0.5">Motion near west fence line.</p>
+</div>
+</div>
+</div>
+</aside>
+</main>
+</div>
+</div>
+</div>
+</div>
+
+</body></html>

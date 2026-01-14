@@ -1,0 +1,213 @@
+{% extends "base.html" %}
+
+{% block title %}Lịch Sử Sự Kiện - Mắt Thần Đại Nam{% endblock %}
+
+{% block content %}
+<div class="flex-1">
+    <!-- Header -->
+    <div class="mb-6 flex flex-wrap items-center justify-between gap-4">
+        <h1 class="text-4xl font-black leading-tight tracking-[-0.033em] text-gray-900 dark:text-white">Lịch Sử Sự Kiện</h1>
+        <div class="flex items-center gap-2">
+            <button class="flex items-center gap-2 rounded-lg bg-white/10 px-4 py-2 text-sm text-white transition-colors hover:bg-white/20">
+                <span class="material-symbols-outlined text-base">download</span>
+                <span>Tải Xuống</span>
+            </button>
+            <button class="flex items-center gap-2 rounded-lg bg-red-500/20 px-4 py-2 text-sm text-red-400 transition-colors hover:bg-red-500/30">
+                <span class="material-symbols-outlined text-base">delete</span>
+                <span>Xóa Đã Chọn</span>
+            </button>
+        </div>
+    </div>
+    
+    <!-- Search Bar -->
+    <div class="mb-6">
+        <div class="relative w-full">
+            <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-4">
+                <span class="material-symbols-outlined text-base text-[#9E9E9E]">search</span>
+            </div>
+            <input class="w-full rounded-lg border-0 bg-[#26292d] py-3 pl-11 pr-12 text-[#E0E0E0] placeholder:text-[#9E9E9E] focus:ring-2 focus:ring-inset focus:ring-primary" id="search-camera" placeholder="Tìm kiếm AI: 'người mặc áo đỏ gần cửa'" type="text"/>
+            <button class="absolute inset-y-0 right-0 flex items-center pr-4 text-[#9E9E9E] transition-colors hover:text-white">
+                <span class="material-symbols-outlined text-lg">tune</span>
+            </button>
+        </div>
+    </div>
+    
+    <!-- Video Grid -->
+    <div class="grid grid-cols-1 gap-4 lg:grid-cols-2 xl:grid-cols-3">
+        <!-- Event Card 1 - Fighting -->
+        <div class="group relative flex flex-col overflow-hidden rounded-xl border border-white/10 bg-[#26292d]/50 transition-all hover:border-primary hover:bg-[#26292d]">
+            <div class="relative aspect-video w-full cursor-pointer bg-black">
+                <img alt="Fighting event thumbnail" class="absolute inset-0 h-full w-full object-cover opacity-100 transition-opacity duration-300 group-hover:opacity-0" src="https://images.unsplash.com/photo-1574634066836-bb81e70e5c47?w=500"/>
+                <img alt="Fighting event loop" class="absolute inset-0 h-full w-full object-cover opacity-0 transition-opacity duration-300 group-hover:opacity-100" src="https://images.unsplash.com/photo-1551847812-a6d6ac46a6bb?w=500"/>
+                <div class="absolute inset-0 flex items-center justify-center bg-black/50 opacity-0 transition-opacity group-hover:opacity-100">
+                    <span class="material-symbols-outlined text-6xl text-white">play_circle</span>
+                </div>
+                <div class="absolute bottom-2 right-2 rounded bg-black/50 px-1.5 py-0.5 text-xs text-white">00:12</div>
+            </div>
+            <div class="flex flex-col p-4">
+                <div class="mb-2 flex items-start justify-between">
+                    <div>
+                        <p class="font-bold text-white">Đánh Nhau</p>
+                        <p class="text-sm text-[#9E9E9E]">Hội Trường Chính - C01</p>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <button class="text-primary transition-colors hover:text-primary/80">
+                            <span class="material-symbols-outlined text-xl" style="font-variation-settings: 'FILL' 1, 'wght' 400;">bookmark</span>
+                        </button>
+                        <button class="text-[#9E9E9E] transition-colors hover:text-white">
+                            <span class="material-symbols-outlined text-xl">label</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="text-sm text-[#9E9E9E]">
+                    <p class="flex items-center gap-2">
+                        <span class="material-symbols-outlined text-base">today</span>
+                        <span>08/01/2026, 14:32</span>
+                    </p>
+                    <p class="flex items-center gap-2">
+                        <span class="material-symbols-outlined text-base">person</span>
+                        <span>3 Người tham gia</span>
+                    </p>
+                </div>
+            </div>
+            <input class="absolute left-4 top-4 size-5 rounded border-2 border-white/50 bg-transparent text-primary transition-all checked:bg-primary checked:border-primary focus:ring-0 focus:ring-offset-0" type="checkbox"/>
+        </div>
+        
+        <!-- Event Card 2 - Scuffle -->
+        <div class="group relative flex flex-col overflow-hidden rounded-xl border border-white/10 bg-[#26292d]/50 transition-all hover:border-primary hover:bg-[#26292d]">
+            <div class="relative aspect-video w-full cursor-pointer bg-black">
+                <img alt="Scuffle event thumbnail" class="absolute inset-0 h-full w-full object-cover opacity-100 transition-opacity duration-300 group-hover:opacity-0" src="https://images.unsplash.com/photo-1581094271901-8022df4466f9?w=500"/>
+                <img alt="Scuffle event loop" class="absolute inset-0 h-full w-full object-cover opacity-0 transition-opacity duration-300 group-hover:opacity-100" src="https://images.unsplash.com/photo-1556742111-a301076d9d18?w=500"/>
+                <div class="absolute inset-0 flex items-center justify-center bg-black/50 opacity-0 transition-opacity group-hover:opacity-100">
+                    <span class="material-symbols-outlined text-6xl text-white">play_circle</span>
+                </div>
+                <div class="absolute bottom-2 right-2 rounded bg-black/50 px-1.5 py-0.5 text-xs text-white">00:08</div>
+            </div>
+            <div class="flex flex-col p-4">
+                <div class="mb-2 flex items-start justify-between">
+                    <div>
+                        <p class="font-bold text-white">Xô Đẩy</p>
+                        <p class="text-sm text-[#9E9E9E]">Hành Lang Tầng 2 - C04</p>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <button class="text-[#9E9E9E] transition-colors hover:text-primary">
+                            <span class="material-symbols-outlined text-xl">bookmark</span>
+                        </button>
+                        <button class="text-[#9E9E9E] transition-colors hover:text-white">
+                            <span class="material-symbols-outlined text-xl">label</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="text-sm text-[#9E9E9E]">
+                    <p class="flex items-center gap-2">
+                        <span class="material-symbols-outlined text-base">today</span>
+                        <span>08/01/2026, 11:05</span>
+                    </p>
+                    <p class="flex items-center gap-2">
+                        <span class="material-symbols-outlined text-base">person</span>
+                        <span>2 Người tham gia</span>
+                    </p>
+                </div>
+            </div>
+            <input class="absolute left-4 top-4 size-5 rounded border-2 border-white/50 bg-transparent text-primary transition-all checked:bg-primary checked:border-primary focus:ring-0 focus:ring-offset-0" type="checkbox"/>
+        </div>
+        
+        <!-- Event Card 3 - Vandalism -->
+        <div class="group relative flex flex-col overflow-hidden rounded-xl border border-white/10 bg-[#26292d]/50 transition-all hover:border-primary hover:bg-[#26292d]">
+            <div class="relative aspect-video w-full cursor-pointer bg-black">
+                <img alt="Vandalism event thumbnail" class="absolute inset-0 h-full w-full object-cover opacity-100 transition-opacity duration-300 group-hover:opacity-0" src="https://images.unsplash.com/photo-1561361513-2d000a50f0dc?w=500"/>
+                <img alt="Vandalism event loop" class="absolute inset-0 h-full w-full object-cover opacity-0 transition-opacity duration-300 group-hover:opacity-100" src="https://images.unsplash.com/photo-1600320254374-ce2d293c324e?w=500"/>
+                <div class="absolute inset-0 flex items-center justify-center bg-black/50 opacity-0 transition-opacity group-hover:opacity-100">
+                    <span class="material-symbols-outlined text-6xl text-white">play_circle</span>
+                </div>
+                <div class="absolute bottom-2 right-2 rounded bg-black/50 px-1.5 py-0.5 text-xs text-white">00:15</div>
+            </div>
+            <div class="flex flex-col p-4">
+                <div class="mb-2 flex items-start justify-between">
+                    <div>
+                        <p class="font-bold text-white">Phá Hoại</p>
+                        <p class="text-sm text-[#9E9E9E]">Bãi Đậu Xe - P02</p>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <button class="text-[#9E9E9E] transition-colors hover:text-primary">
+                            <span class="material-symbols-outlined text-xl">bookmark</span>
+                        </button>
+                        <button class="text-[#9E9E9E] transition-colors hover:text-white">
+                            <span class="material-symbols-outlined text-xl">label</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="text-sm text-[#9E9E9E]">
+                    <p class="flex items-center gap-2">
+                        <span class="material-symbols-outlined text-base">today</span>
+                        <span>08/01/2026, 09:18</span>
+                    </p>
+                    <p class="flex items-center gap-2">
+                        <span class="material-symbols-outlined text-base">person</span>
+                        <span>1 Người tham gia</span>
+                    </p>
+                </div>
+            </div>
+            <input class="absolute left-4 top-4 size-5 rounded border-2 border-white/50 bg-transparent text-primary transition-all checked:bg-primary checked:border-primary focus:ring-0 focus:ring-offset-0" type="checkbox"/>
+        </div>
+        
+        <!-- More Event Cards... -->
+        {% for i in range(3) %}
+        <div class="group relative flex flex-col overflow-hidden rounded-xl border border-white/10 bg-[#26292d]/50 transition-all hover:border-primary hover:bg-[#26292d]">
+            <div class="relative aspect-video w-full cursor-pointer bg-black">
+                <img alt="Event thumbnail" class="absolute inset-0 h-full w-full object-cover" src="https://images.unsplash.com/photo-1533073526757-2c8ca1df9f1c?w=500"/>
+                <div class="absolute inset-0 flex items-center justify-center bg-black/50 opacity-0 transition-opacity group-hover:opacity-100">
+                    <span class="material-symbols-outlined text-6xl text-white">play_circle</span>
+                </div>
+                <div class="absolute bottom-2 right-2 rounded bg-black/50 px-1.5 py-0.5 text-xs text-white">00:05</div>
+            </div>
+            <div class="flex flex-col p-4">
+                <div class="mb-2 flex items-start justify-between">
+                    <div>
+                        <p class="font-bold text-white">Hành Vi Khả Nghi</p>
+                        <p class="text-sm text-[#9E9E9E]">Khu Vực Khác</p>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <button class="text-[#9E9E9E] transition-colors hover:text-primary">
+                            <span class="material-symbols-outlined text-xl">bookmark</span>
+                        </button>
+                        <button class="text-[#9E9E9E] transition-colors hover:text-white">
+                            <span class="material-symbols-outlined text-xl">label</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="text-sm text-[#9E9E9E]">
+                    <p class="flex items-center gap-2">
+                        <span class="material-symbols-outlined text-base">today</span>
+                        <span>07/01/2026, 08:{{ 55 - i * 10 }}</span>
+                    </p>
+                    <p class="flex items-center gap-2">
+                        <span class="material-symbols-outlined text-base">person</span>
+                        <span>{{ i + 1 }} Người tham gia</span>
+                    </p>
+                </div>
+            </div>
+            <input class="absolute left-4 top-4 size-5 rounded border-2 border-white/50 bg-transparent text-primary transition-all checked:bg-primary checked:border-primary focus:ring-0 focus:ring-offset-0" type="checkbox"/>
+        </div>
+        {% endfor %}
+    </div>
+    
+    <!-- Pagination -->
+    <div class="mt-8 flex items-center justify-between">
+        <span class="text-sm text-[#9E9E9E]">Hiển thị 1 đến 6 trong 42 kết quả</span>
+        <div class="flex items-center gap-2">
+            <button class="flex h-8 w-8 items-center justify-center rounded-lg border border-white/10 text-white transition-colors hover:bg-white/10 disabled:opacity-50">
+                <span class="material-symbols-outlined text-lg">chevron_left</span>
+            </button>
+            <button class="flex h-8 w-8 items-center justify-center rounded-lg border border-transparent bg-primary text-white transition-colors">1</button>
+            <button class="flex h-8 w-8 items-center justify-center rounded-lg border border-white/10 text-white transition-colors hover:bg-white/10">2</button>
+            <button class="flex h-8 w-8 items-center justify-center rounded-lg border border-white/10 text-white transition-colors hover:bg-white/10">3</button>
+            <span class="text-[#9E9E9E]">...</span>
+            <button class="flex h-8 w-8 items-center justify-center rounded-lg border border-white/10 text-white transition-colors hover:bg-white/10">7</button>
+            <button class="flex h-8 w-8 items-center justify-center rounded-lg border border-white/10 text-white transition-colors hover:bg-white/10">
+                <span class="material-symbols-outlined text-lg">chevron_right</span>
+            </button>
+        </div>
+    </div>
+</div>
+{% endblock %}

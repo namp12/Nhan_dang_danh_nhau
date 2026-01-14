@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Complete Analysis Result Screen</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings:
+                'FILL' 0,
+                'wght' 400,
+                'GRAD' 0,
+                'opsz' 24
+        }
+    </style>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#2c7677",
+                        "background-light": "#f9fafa",
+                        "background-dark": "#17191c",
+                        "card-dark": "#202327",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+</head>
+<body class="font-display bg-background-dark text-gray-300">
+<div class="relative flex h-auto min-h-screen w-full flex-col">
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-white/10 px-6 sm:px-10 py-4">
+<div class="flex items-center gap-4">
+<div class="size-6 text-primary">
+<svg fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path clip-rule="evenodd" d="M12.0799 24L4 19.2479L9.95537 8.75216L18.04 13.4961L18.0446 4H29.9554L29.96 13.4961L38.0446 8.75216L44 19.2479L35.92 24L44 28.7521L38.0446 39.2479L29.96 34.5039L29.9554 44H18.0446L18.04 34.5039L9.95537 39.2479L4 28.7521L12.0799 24Z" fill="currentColor" fill-rule="evenodd"></path>
+</svg>
+</div>
+<div class="flex items-center gap-2">
+<h1 class="text-xl font-bold leading-tight tracking-tight text-white">Analysis Result:</h1>
+<p class="text-lg font-medium text-gray-400">Crowd_Event_04B.mp4</p>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<button class="flex h-10 cursor-pointer items-center justify-center gap-2 overflow-hidden rounded-lg bg-white/10 px-4 text-sm font-bold leading-normal tracking-wide text-white transition-colors hover:bg-white/20">
+<span class="material-symbols-outlined text-lg">forum</span>
+<span>Collaborate</span>
+</button>
+<div class="relative">
+<button class="peer flex h-10 cursor-pointer items-center justify-center gap-2 overflow-hidden rounded-lg bg-primary px-4 text-sm font-bold leading-normal tracking-wide text-white transition-colors hover:bg-primary/80">
+<span class="material-symbols-outlined text-lg">download</span>
+<span>Export Report</span>
+</button>
+</div>
+<button class="flex h-10 cursor-pointer items-center justify-center gap-2 overflow-hidden rounded-lg border border-white/10 px-4 text-sm font-bold leading-normal tracking-wide text-white transition-colors hover:bg-white/10">
+<span class="material-symbols-outlined text-lg">close</span>
+<span>Close Analysis</span>
+</button>
+</div>
+</header>
+<main class="flex flex-1 flex-col p-6 sm:p-10">
+<div class="mx-auto flex w-full max-w-7xl flex-1 flex-col gap-6 lg:flex-row lg:gap-8">
+<div class="flex flex-[2] flex-col gap-6">
+<div class="relative flex flex-col overflow-hidden rounded-xl bg-black shadow-lg">
+<div class="relative aspect-video flex-1 bg-cover bg-center" data-alt="Security camera footage of a public space with object detection overlays" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCfR9T4N4MCaSqANQANozar8yxieGaAx4pEiMt936Lt90nS1ZKomxVhjVhdCKubk0w0X_6VhMLe3frIXBv0jxKiQbqA3rAFRWTcq6RytpekoaD2AeczQK7kun-D_jqA7onN34hw6f8eaoCebuMMPYnyuwQ87STTq0hPB4dG5bO08VthlBWpMBOg-JudU18fapXKYaCh_OUxvm4o5Bm7CDQ_wxzu6NvdVoMXCR6jYk_9XEb7_z7GlU_UZu4NhBHGoVOKgOaXsOU8Rmc");'>
+<div class="absolute inset-2 border-2 border-dashed border-primary/50">
+<div class="absolute left-1/4 top-1/3 h-1/2 w-1/4 rounded border-2 border-yellow-400 bg-yellow-400/10 p-1">
+<span class="absolute -top-6 left-0 rounded-t bg-yellow-400 px-1.5 py-0.5 text-xs font-bold text-black">Person 1</span>
+</div>
+<div class="absolute right-1/4 top-1/4 h-2/3 w-1/4 rounded border-2 border-sky-400 bg-sky-400/10 p-1">
+<span class="absolute -top-6 left-0 rounded-t bg-sky-400 px-1.5 py-0.5 text-xs font-bold text-black">Person 2</span>
+</div>
+</div>
+</div>
+<div class="bg-card-dark/80 px-4 py-3 backdrop-blur-sm">
+<div class="relative mb-2 h-6 w-full cursor-pointer pt-4">
+<div class="absolute inset-x-0 top-1/2 h-1.5 -translate-y-1/2 rounded-full bg-white/20">
+<div class="absolute h-full w-3/4 rounded-full bg-primary/50"></div>
+<div class="absolute h-full w-3/4 rounded-full bg-primary"></div>
+</div>
+<div class="absolute left-[30%] top-0 text-center">
+<div class="size-2 rounded-full bg-yellow-400"></div>
+<div class="absolute -left-1/2 top-full mt-1 h-3 w-px bg-yellow-400/50"></div>
+</div>
+<div class="absolute left-[40%] top-0 text-center">
+<div class="size-2 rounded-full bg-sky-400"></div>
+<div class="absolute -left-1/2 top-full mt-1 h-3 w-px bg-sky-400/50"></div>
+</div>
+<div class="absolute left-[55%] top-0 text-center">
+<div class="size-2 rounded-full bg-red-500"></div>
+<div class="absolute -left-1/2 top-full mt-1 h-3 w-px bg-red-500/50"></div>
+</div>
+<div class="absolute left-[15%] h-1 w-full bg-yellow-400/50" style="clip-path: polygon(0% 0%, 50% 0%, 50% 100%, 0% 100%);"></div>
+<div class="absolute left-[20%] h-1 w-full bg-sky-400/50" style="clip-path: polygon(0% 0%, 45% 0%, 45% 100%, 0% 100%);"></div>
+<div class="absolute left-3/4 top-1/2 -ml-2 -translate-y-1/2">
+<div class="size-4 cursor-pointer rounded-full bg-white shadow ring-2 ring-primary"></div>
+</div>
+</div>
+<div class="mt-2 flex items-center justify-between">
+<div class="flex items-center gap-2">
+<p class="text-sm font-medium text-white">01:47 / 02:23</p>
+</div>
+<div class="flex items-center gap-1.5">
+<button class="flex size-9 items-center justify-center rounded-md text-gray-300 transition-colors hover:bg-white/10 hover:text-white"><span class="material-symbols-outlined !text-xl">fast_rewind</span></button>
+<button class="flex size-9 items-center justify-center rounded-md text-gray-300 transition-colors hover:bg-white/10 hover:text-white"><span class="material-symbols-outlined !text-xl">chevron_left</span></button>
+<button class="flex size-10 items-center justify-center rounded-md bg-white/10 text-white transition-colors hover:bg-white/20"><span class="material-symbols-outlined !text-2xl" style="font-variation-settings: 'FILL' 1;">pause</span></button>
+<button class="flex size-9 items-center justify-center rounded-md text-gray-300 transition-colors hover:bg-white/10 hover:text-white"><span class="material-symbols-outlined !text-xl">chevron_right</span></button>
+<button class="flex size-9 items-center justify-center rounded-md text-gray-300 transition-colors hover:bg-white/10 hover:text-white"><span class="material-symbols-outlined !text-xl">fast_forward</span></button>
+<div class="mx-2 h-6 w-px bg-white/20"></div>
+<button class="flex items-center justify-center gap-1 rounded-md px-2 py-1.5 text-xs text-gray-300 transition-colors hover:bg-white/10 hover:text-white"><span class="material-symbols-outlined !text-base">slow_motion_video</span> 1.0x</button>
+<button class="flex items-center justify-center rounded-md p-1.5 text-gray-300 transition-colors hover:bg-white/10 hover:text-white"><span class="material-symbols-outlined !text-xl">content_cut</span></button>
+<button class="flex items-center justify-center rounded-md p-1.5 text-gray-300 transition-colors hover:bg-white/10 hover:text-white"><span class="material-symbols-outlined !text-xl">volume_up</span></button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="flex min-h-[500px] flex-1 flex-col rounded-xl bg-card-dark shadow-lg">
+<div class="border-b border-white/10 p-4">
+<div class="flex w-full items-center gap-2 rounded-lg bg-background-dark p-1">
+<button class="flex-1 rounded-md bg-primary px-3 py-1.5 text-center text-sm font-semibold text-white">Events</button>
+<button class="flex-1 rounded-md px-3 py-1.5 text-center text-sm font-semibold text-gray-400 hover:bg-white/5">Report</button>
+<button class="flex-1 rounded-md px-3 py-1.5 text-center text-sm font-semibold text-gray-400 hover:bg-white/5">Collaborate</button>
+</div>
+</div>
+<div class="flex-1 space-y-1 overflow-y-auto p-4">
+<div class="group flex cursor-pointer flex-col gap-2 rounded-lg p-3 transition-colors hover:bg-primary/20">
+<div class="flex items-start gap-4">
+<div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white/10 text-yellow-400 transition-colors group-hover:bg-yellow-400 group-hover:text-black">
+<span class="material-symbols-outlined">person</span>
+</div>
+<div>
+<p class="text-sm font-bold text-white">00:32 - Person 1 Detected</p>
+<p class="text-sm text-gray-400">Entered frame from left.</p>
+</div>
+</div>
+</div>
+<div class="group flex cursor-pointer flex-col gap-2 rounded-lg p-3 transition-colors hover:bg-primary/20">
+<div class="flex items-start gap-4">
+<div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white/10 text-sky-400 transition-colors group-hover:bg-sky-400 group-hover:text-black">
+<span class="material-symbols-outlined">person</span>
+</div>
+<div>
+<p class="text-sm font-bold text-white">00:41 - Person 2 Detected</p>
+<p class="text-sm text-gray-400">Entered frame from right.</p>
+</div>
+</div>
+</div>
+<div class="group relative flex cursor-pointer flex-col gap-2 rounded-lg bg-primary/30 p-3 ring-2 ring-primary transition-colors">
+<button class="absolute right-2 top-2 z-10 flex size-7 items-center justify-center rounded-full text-gray-300 transition-colors hover:bg-white/20 hover:text-white">
+<span class="material-symbols-outlined !text-lg">add_comment</span>
+</button>
+<div class="flex items-start gap-4">
+<div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-primary text-white">
+<span class="material-symbols-outlined">gavel</span>
+</div>
+<div>
+<p class="text-sm font-bold text-white">00:43 - Event: Fighting</p>
+<p class="text-sm text-white">Interaction between Person 1 &amp; 2 classified as fighting.</p>
+</div>
+</div>
+<div class="ml-14 mt-2 border-l-2 border-primary/50 pl-4">
+<p class="text-xs font-semibold text-gray-300">Object Recognition Tags:</p>
+<div class="mt-1 flex flex-wrap gap-1.5">
+<span class="rounded bg-yellow-400/20 px-1.5 py-0.5 text-xs font-medium text-yellow-300">Person 1</span>
+<span class="rounded bg-sky-400/20 px-1.5 py-0.5 text-xs font-medium text-sky-300">Person 2</span>
+</div>
+<p class="mt-2.5 text-xs font-semibold text-gray-300">Sentiment Analysis (Audio):</p>
+<div class="mt-1 flex items-center gap-2">
+<span class="material-symbols-outlined !text-base text-red-400">graphic_eq</span>
+<p class="text-xs font-medium text-red-400">Aggressive Tone: Shouting Detected</p>
+</div>
+</div>
+</div>
+<div class="group flex cursor-pointer flex-col gap-2 rounded-lg p-3 transition-colors hover:bg-primary/20">
+<div class="flex items-start gap-4">
+<div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white/10 text-gray-400 transition-colors group-hover:bg-primary group-hover:text-white">
+<span class="material-symbols-outlined">person_remove</span>
+</div>
+<div>
+<p class="text-sm font-bold text-white">01:58 - Person 1 Exits</p>
+<p class="text-sm text-gray-400">Exited frame from right.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+
+</body></html>

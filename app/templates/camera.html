@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html class="dark" lang="vi">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Quản Lý Camera - Mắt Thần Đại Nam</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script>
+    tailwind.config = {
+        darkMode: "class",
+        theme: {
+            extend: {
+                colors: {
+                    "primary": "#2c7677",
+                    "background-dark": "#17191c",
+                    "surface-dark": "#26292D",
+                    "text-light": "#E0E0E0",
+                    "text-muted": "#9E9E9E"
+                },
+                fontFamily: { "display": ["Manrope", "sans-serif"] }
+            }
+        }
+    }
+</script>
+<style>
+    .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    .sidebar-group:hover .sidebar-group-hover\:w-56 { width: 14rem; }
+    .sidebar-group:hover .sidebar-group-hover\:opacity-100 { opacity: 1; }
+    .sidebar-group:hover .sidebar-group-hover\:pointer-events-auto { pointer-events: auto; }
+</style>
+</head>
+<body class="font-display bg-background-dark">
+<div class="relative flex min-h-screen w-full dark overflow-x-hidden">
+<div class="layout-container flex h-full grow flex-row">
+<!-- Sidebar - Same as index.html -->
+<nav class="group sidebar-group relative z-20 flex flex-col items-center bg-surface-dark py-4 px-2 shadow-lg transition-all duration-300 w-20 sidebar-group-hover:w-56">
+<a class="flex items-center gap-4 text-text-light mb-8 w-full justify-center" href="/">
+<div class="size-10 text-primary flex-shrink-0">
+<img src="{{ url_for('static',filename='images/logo.png') }}" alt="Logo" class="w-full h-full object-contain"/>
+</div>
+<span class="text-lg font-bold dark:text-text-light opacity-0 pointer-events-none transition-opacity duration-200 sidebar-group-hover:opacity-100 sidebar-group-hover:pointer-events-auto whitespace-nowrap">Mắt Thần Đại Nam</span>
+</a>
+<div class="flex flex-col gap-2 flex-1 w-full">
+<a class="flex items-center gap-4 h-12 px-4 rounded-lg text-text-muted hover:bg-gray-700/50 hover:text-text-light transition-colors w-full" href="/">
+<span class="material-symbols-outlined text-2xl">home</span>
+<span class="font-semibold text-sm whitespace-nowrap opacity-0 pointer-events-none transition-opacity duration-200 sidebar-group-hover:opacity-100 sidebar-group-hover:pointer-events-auto">Trang Chủ</span>
+</a>
+<a class="flex items-center gap-4 h-12 px-4 rounded-lg bg-primary/10 text-primary w-full" href="/camera">
+<span class="material-symbols-outlined text-2xl">videocam</span>
+<span class="font-semibold text-sm whitespace-nowrap opacity-0 pointer-events-none transition-opacity duration-200 sidebar-group-hover:opacity-100 sidebar-group-hover:pointer-events-auto">Quản Lý Camera</span>
+</a>
+<a class="flex items-center gap-4 h-12 px-4 rounded-lg text-text-muted hover:bg-gray-700/50 hover:text-text-light transition-colors w-full" href="/history">
+<span class="material-symbols-outlined text-2xl">history</span>
+<span class="font-semibold text-sm whitespace-nowrap opacity-0 pointer-events-none transition-opacity duration-200 sidebar-group-hover:opacity-100 sidebar-group-hover:pointer-events-auto">Lịch Sử</span>
+</a>
+<a class="flex items-center gap-4 h-12 px-4 rounded-lg text-text-muted hover:bg-gray-700/50 hover:text-text-light transition-colors w-full" href="#">
+<span class="material-symbols-outlined text-2xl">video_library</span>
+<span class="font-semibold text-sm whitespace-nowrap opacity-0 pointer-events-none transition-opacity duration-200 sidebar-group-hover:opacity-100 sidebar-group-hover:pointer-events-auto">Phân Tích Video</span>
+</a>
+</div>
+<div class="flex flex-col gap-2 w-full">
+<a class="flex items-center gap-4 h-12 px-4 rounded-lg text-text-muted hover:bg-gray-700/50 hover:text-text-light transition-colors w-full" href="/config">
+<span class="material-symbols-outlined text-2xl">settings</span>
+<span class="font-semibold text-sm whitespace-nowrap opacity-0 pointer-events-none transition-opacity duration-200 sidebar-group-hover:opacity-100 sidebar-group-hover:pointer-events-auto">Cấu Hình</span>
+</a>
+</div>
+</nav>
+
+<!-- Main Content -->
+<div class="flex-1 px-6 py-5">
+<!-- Header -->
+<div class="mb-8 flex items-center justify-between">
+<div>
+<h1 class="text-4xl font-black text-white mb-2">Quản Lý Camera</h1>
+<p class="text-text-muted">Thêm, chỉnh sửa và quản lý camera giám sát của trường</p>
+</div>
+<button onclick="openAddCameraModal()" class="flex items-center gap-2 bg-primary hover:bg-primary/90 text-white px-6 py-3 rounded-lg font-semibold transition-colors">
+<span class="material-symbols-outlined">add_circle</span>
+<span>Thêm Camera</span>
+</button>
+</div>
+
+<!-- Camera Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+<!-- Camera Card 1 - Active -->
+<div class="bg-surface-dark rounded-xl overflow-hidden border border-gray-700 hover:border-primary transition-colors">
+<div class="relative aspect-video bg-black">
+<img src="https://images.unsplash.com/photo-1607827448387-a67db1383b59?w=500" alt="Camera feed" class="w-full h-full object-cover"/>
+<div class="absolute top-3 left-3 flex items-center gap-2 bg-green-600 text-white px-2 py-1 rounded-full text-xs font-medium">
+<span class="relative flex h-2 w-2">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+</span>
+<span>ONLINE</span>
+</div>
+</div>
+<div class="p-4">
+<div class="flex items-start justify-between mb-3">
+<div>
+<h3 class="text-white font-bold text-lg">Camera Sân Chính</h3>
+<p class="text-text-muted text-sm">Vị trí: Sân trường - Tầng 1</p>
+</div>
+<span class="material-symbols-outlined text-green-500">check_circle</span>
+</div>
+<div class="flex items-center gap-2 text-xs text-text-muted mb-4">
+<span class="material-symbols-outlined text-sm">router</span>
+<span class="font-mono">rtsp://192.168.1.101</span>
+</div>
+<div class="flex gap-2">
+<button onclick="viewCamera(1)" class="flex-1 flex items-center justify-center gap-1 bg-primary/20 hover:bg-primary/30 text-primary px-3 py-2 rounded-lg text-sm font-medium transition-colors">
+<span class="material-symbols-outlined text-base">visibility</span>
+Xem
+</button>
+<button onclick="openEditModal(1)" class="flex-1 flex items-center justify-center gap-1 bg-gray-700 hover:bg-gray-600 text-white px-3 py-2 rounded-lg text-sm font-medium transition-colors">
+<span class="material-symbols-outlined text-base">edit</span>
+Sửa
+</button>
+<button onclick="confirmDelete(1)" class="flex items-center justify-center bg-red-500/20 hover:bg-red-500/30 text-red-500 px-3 py-2 rounded-lg text-sm font-medium transition-colors">
+<span class="material-symbols-outlined text-base">delete</span>
+</button>
+</div>
+</div>
+</div>
+
+<!-- Camera Card 2 - Offline -->
+<div class="bg-surface-dark rounded-xl overflow-hidden border border-gray-700 hover:border-primary transition-colors opacity-75">
+<div class="relative aspect-video bg-black flex items-center justify-center">
+<span class="material-symbols-outlined text-6xl text-gray-600">videocam_off</span>
+<div class="absolute top-3 left-3 bg-red-600 text-white px-2 py-1 rounded-full text-xs font-medium">OFFLINE</div>
+</div>
+<div class="p-4">
+<div class="flex items-start justify-between mb-3">
+<div>
+<h3 class="text-white font-bold text-lg">Camera Hành Lang</h3>
+<p class="text-text-muted text-sm">Vị trí: Tầng 2 - Khu A</p>
+</div>
+<span class="material-symbols-outlined text-red-500">cancel</span>
+</div>
+<div class="flex items-center gap-2 text-xs text-text-muted mb-4">
+<span class="material-symbols-outlined text-sm">router</span>
+<span class="font-mono">rtsp://192.168.1.102</span>
+</div>
+<div class="flex gap-2">
+<button class="flex-1 flex items-center justify-center gap-1 bg-gray-700/50 text-gray-500 px-3 py-2 rounded-lg text-sm font-medium cursor-not-allowed">
+<span class="material-symbols-outlined text-base">visibility_off</span>
+Xem
+</button>
+<button onclick="openEditModal(2)" class="flex-1 flex items-center justify-center gap-1 bg-gray-700 hover:bg-gray-600 text-white px-3 py-2 rounded-lg text-sm font-medium transition-colors">
+<span class="material-symbols-outlined text-base">edit</span>
+Sửa
+</button>
+<button onclick="confirmDelete(2)" class="flex items-center justify-center bg-red-500/20 hover:bg-red-500/30 text-red-500 px-3 py-2 rounded-lg text-sm font-medium transition-colors">
+<span class="material-symbols-outlined text-base">delete</span>
+</button>
+</div>
+</div>
+</div>
+
+<!-- Add New Card -->
+<div onclick="openAddCameraModal()" class="bg-surface-dark/50 rounded-xl border-2 border-dashed border-gray-700 hover:border-primary hover:bg-surface-dark flex flex-col items-center justify-center p-8 cursor-pointer transition-all min-h-[320px]">
+<span class="material-symbols-outlined text-6xl text-gray-600 mb-4">add_circle</span>
+<h3 class="text-white font-semibold text-lg mb-2">Thêm Camera Mới</h3>
+<p class="text-text-muted text-sm text-center">Click để thêm camera giám sát vào hệ thống</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- Modal Thêm Camera -->
+<div id="addCameraModal" class="hidden fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+<div class="bg-surface-dark rounded-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+<div class="flex items-center justify-between p-6 border-b border-gray-700">
+<h2 class="text-2xl font-bold text-white">Thêm Camera Mới</h2>
+<button onclick="closeAddCameraModal()" class="text-text-muted hover:text-white transition-colors">
+<span class="material-symbols-outlined text-3xl">close</span>
+</button>
+</div>
+<div class="p-6 space-y-6">
+<div>
+<label class="block text-white font-medium mb-2">Tên Camera *</label>
+<input type="text" placeholder="VD: Camera Sân Chính" class="w-full bg-background-dark border border-gray-700 rounded-lg px-4 py-3 text-white placeholder:text-gray-500 focus:border-primary focus:ring-2 focus:ring-primary/50 outline-none transition-all"/>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div>
+<label class="block text-white font-medium mb-2">Loại Camera *</label>
+<select class="w-full bg-background-dark border border-gray-700 rounded-lg px-4 py-3 text-white focus:border-primary focus:ring-2 focus:ring-primary/50 outline-none">
+<option>RTSP</option>
+<option>ONVIF</option>
+<option>HTTP</option>
+</select>
+</div>
+<div>
+<label class="block text-white font-medium mb-2">Vị Trí *</label>
+<input type="text" placeholder="VD: Tầng 1 - Khu A" class="w-full bg-background-dark border border-gray-700 rounded-lg px-4 py-3 text-white placeholder:text-gray-500 focus:border-primary focus:ring-2 focus:ring-primary/50 outline-none"/>
+</div>
+</div>
+<div>
+<label class="block text-white font-medium mb-2">URL Kết Nối *</label>
+<input type="text" placeholder="rtsp://192.168.1.100:554/stream" class="w-full bg-background-dark border border-gray-700 rounded-lg px-4 py-3 text-white placeholder:text-gray-500 focus:border-primary focus:ring-2 focus:ring-primary/50 outline-none font-mono"/>
+<p class="text-text-muted text-sm mt-2">Định dạng: rtsp://username:password@ip:port/path</p>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div>
+<label class="block text-white font-medium mb-2">Tên Đăng Nhập</label>
+<input type="text" placeholder="admin" class="w-full bg-background-dark border border-gray-700 rounded-lg px-4 py-3 text-white placeholder:text-gray-500 focus:border-primary focus:ring-2 focus:ring-primary/50 outline-none"/>
+</div>
+<div>
+<label class="block text-white font-medium mb-2">Mật Khẩu</label>
+<input type="password" placeholder="••••••" class="w-full bg-background-dark border border-gray-700 rounded-lg px-4 py-3 text-white placeholder:text-gray-500 focus:border-primary focus:ring-2 focus:ring-primary/50 outline-none"/>
+</div>
+</div>
+<div class="bg-primary/10 border border-primary/30 rounded-lg p-4">
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary">info</span>
+<div>
+<p class="text-primary font-medium mb-1">Lưu Ý</p>
+<p class="text-text-muted text-sm">Camera cần phải hỗ trợ RTSP hoặc ONVIF. Đảm bảo camera đang hoạt động và có thể kết nối được từ server.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="flex gap-3 p-6 border-t border-gray-700">
+<button onclick="closeAddCameraModal()" class="flex-1 bg-gray-700 hover:bg-gray-600 text-white px-6 py-3 rounded-lg font-semibold transition-colors">Hủy</button>
+<button onclick="saveCamera()" class="flex-1 bg-primary hover:bg-primary/90 text-white px-6 py-3 rounded-lg font-semibold transition-colors">Lưu Camera</button>
+</div>
+</div>
+</div>
+
+<!-- Modal Xác Nhận Xóa -->
+<div id="deleteModal" class="hidden fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+<div class="bg-surface-dark rounded-xl max-w-md w-full">
+<div class="p-6">
+<div class="flex items-center justify-center w-16 h-16 bg-red-500/20 rounded-full mx-auto mb-4">
+<span class="material-symbols-outlined text-4xl text-red-500">warning</span>
+</div>
+<h2 class="text-2xl font-bold text-white text-center mb-2">Xác Nhận Xóa Camera</h2>
+<p class="text-text-muted text-center mb-6">Bạn có chắc chắn muốn xóa camera này? Hành động này không thể hoàn tác.</p>
+<div class="flex gap-3">
+<button onclick="closeDeleteModal()" class="flex-1 bg-gray-700 hover:bg-gray-600 text-white px-6 py-3 rounded-lg font-semibold transition-colors">Hủy</button>
+<button onclick="deleteCamera()" class="flex-1 bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors">Xóa</button>
+</div>
+</div>
+</div>
+</div>
+
+<script>
+function openAddCameraModal() {
+    document.getElementById('addCameraModal').classList.remove('hidden');
+}
+function closeAddCameraModal() {
+    document.getElementById('addCameraModal').classList.add('hidden');
+}
+function openEditModal(id) {
+    // TODO: Load camera data and show edit modal
+    openAddCameraModal(); // Reuse same modal for now
+}
+function confirmDelete(id) {
+    document.getElementById('deleteModal').classList.remove('hidden');
+}
+function closeDeleteModal() {
+    document.getElementById('deleteModal').classList.add('hidden');
+}
+function saveCamera() {
+    // TODO: Implement save logic
+    alert('Camera đã được lưu (UI only - bạn cần implement backend)');
+    closeAddCameraModal();
+}
+function deleteCamera() {
+    // TODO: Implement delete logic
+    alert('Camera đã được xóa (UI only - bạn cần implement backend)');
+    closeDeleteModal();
+}
+function viewCamera(id) {
+    // TODO: Navigate to camera view
+    window.location.href = '/';
+}
+</script>
+</body>
+</html>
